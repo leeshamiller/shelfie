@@ -1,12 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const massive = require('massive');
+require('dotenv').config();
 const ctrl = require('./controller');
-const PORT = 4321;
+const {PORT, CONNECTION_STRING} = process.env;
+// const PORT = 4321;
 
 const app = express();
 app.use(bodyParser.json());
 
 
 
-
-app.listen(PORT, () => console.log(`${PORT} blastoff!!`))
+massive(CONNECTION_STRING).then(connection => {
+    app.set('db', connection)
+    app.listen(PORT, () => console.log(`${PORT} blastoff!!`))
+}).catch((err) => console.log(err))
