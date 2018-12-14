@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import './Form.css'
 
 class Form extends Component {
     constructor(props) {
@@ -35,9 +36,18 @@ class Form extends Component {
         this.inputReset()
     }
 
+    // updateProduct(id, obj){
+    //     const {newInventory} = this.props
+    //     const {name, price, img} = obj
+    //     axios.put(`/api/product/${id}`,{name, price, img}).then(res => {
+    //         newInventory(res.data)
+    //     })
+    // }
+
+
     render() {
         return (
-            <div>
+            <div className='greenbox'>
                 <span>Image URL:</span>
                 <input className='img_url' 
                 value={this.state.img}
@@ -60,6 +70,7 @@ class Form extends Component {
                 <div>
                     <button onClick={() => this.inputReset()}>Cancel</button>
                     <button onClick={() => this.addProduct()}>Add to Inventory</button>
+                    
                 </div>
             </div>
         )

@@ -12,6 +12,7 @@ class App extends Component {
     super(props)
 
     this.state = {
+      edit: false,
       inventory: []
     }
   }
@@ -35,9 +36,9 @@ getAll = () => {
       <div className="App">
         <Dashboard 
         inventory={this.state.inventory}
+        afterDeleteInventory={this.getAll}
         />
         <Form 
-        inventory={this.state.inventory}
         newInventory={this.getAll}
         />
         <Header />
