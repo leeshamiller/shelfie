@@ -14,7 +14,7 @@ class Dashboard extends Component {
                     // key={product.id}
                     name={product.name}
                     price={product.price}
-                    imgurl={product.imgurl}
+                    img={product.img}
                 />
             )
         })

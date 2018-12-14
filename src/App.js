@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 import Dashboard from './components/dashboard/Dashboard';
 import Form from './components/form/Form';
@@ -10,25 +11,22 @@ class App extends Component {
     super(props)
 
     this.state = {
-      inventory: [
-      {
-        name: 'rubber duck',
-        price: 3,
-        imgurl: 'so cute!'
-      },
-      {
-        name: 'super duck',
-        price: 4,
-        imgurl: 'superhero!'    
-      },
-      {
-        name: 'green duck',
-        price: 2,
-        imgurl: 'not feeling great!'
-      }
-    ]
+      inventory: []
     }
   }
+
+  componentDidMount(){
+    axios.get('/api/inventory')
+    .then(res => {
+      this.setState({
+        inventory: res.data
+      })
+    })   
+  }
+
+  
+  
+
   render() {
     return (
       <div className="App">

@@ -9,7 +9,7 @@ const {PORT, CONNECTION_STRING} = process.env;
 const app = express();
 app.use(bodyParser.json());
 
-
+app.get('/api/inventory', ctrl.getInventory)
 
 massive(CONNECTION_STRING).then(connection => {
     app.set('db', connection)
