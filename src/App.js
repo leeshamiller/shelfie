@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './App.css';
+
 import Dashboard from './components/dashboard/Dashboard';
 import Form from './components/form/Form';
 import Header from './components/header/Header'
@@ -14,14 +15,16 @@ class App extends Component {
       inventory: []
     }
   }
-
+getAll = () => {
+  axios.get("/api/inventory")
+  .then(res => {
+    this.setState({
+      inventory: res.data
+    })
+  })  
+} 
   componentDidMount(){
-    axios.get('/api/inventory')
-    .then(res => {
-      this.setState({
-        inventory: res.data
-      })
-    })   
+    this.getAll()
   }
 
   
@@ -33,7 +36,10 @@ class App extends Component {
         <Dashboard 
         inventory={this.state.inventory}
         />
-        <Form />
+        <Form 
+        inventory={this.state.inventory}
+        newInventory={this.getAll}
+        />
         <Header />
       </div>
     );
